@@ -24,7 +24,7 @@
 # =========================================================================
 #	Cross compiler
 # =========================================================================
-CROSS_COMPILE := arm-linux-
+CROSS_COMPILE :=
 
 # Re-check GNU ld after $(TOP)/Makefile:329
 ifeq ($(shell $(CROSS_COMPILE)ld.bfd -v 2> /dev/null),)

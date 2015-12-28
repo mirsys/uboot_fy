@@ -52,7 +52,7 @@ DECLARE_GLOBAL_DATA_PTR;
 
 #include "eth.c"
 
-#if (0)
+#if (1)
 #define DBGOUT(msg...)		{ printf("BD: " msg); }
 #else
 #define DBGOUT(msg...)		do {} while (0)

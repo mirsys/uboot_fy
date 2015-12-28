@@ -110,7 +110,7 @@
  *	U-Boot Environments
  */
 /* refer to common/env_common.c	*/
-#define CONFIG_BOOTDELAY	   			0
+#define CONFIG_BOOTDELAY	   			1
 #define CONFIG_ZERO_BOOTDELAY_CHECK
 #define CONFIG_ETHADDR		   			00:e2:1c:ba:e8:60
 #define CONFIG_NETMASK		   			255.255.255.0
@@ -119,10 +119,12 @@
 #define CONFIG_GATEWAYIP				192.168.1.254
 #define CONFIG_BOOTFILE					"uImage"  		/* File to load	*/
 
-#define CONFIG_LOADCMD_CH0	"ext4load mmc 0:1"
+#define CONFIG_LOADCMD_CH0	"fatload mmc 0:1"
 #define CONFIG_LOADCMD_CH2	"ext4load mmc 2:1"
-#define CONFIG_LOADCOMMAND	CONFIG_LOADCMD_CH2
+#define CONFIG_LOADCOMMAND	CONFIG_LOADCMD_CH0
 
+
+#define CONFIG_BOOTARGS		"console=ttyAMA0,115200n8 kgdboc=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 init=/sbin/init systemd.show_status=true  g_ether.host_addr=82:cf:ce:fa:44:18 rootwait lcd=HDMI720P60"
 #define CONFIG_KERNELIMAGE	"uImage"
 #define CONFIG_BOOTCMD_CH2	"ext4load mmc 2:1 0x48000000 $kernel;ext4load mmc 2:1 0x49000000 root.img.gz;bootm 0x48000000"
 #define CONFIG_BOOTCOMMAND	"$bloader 0x48000000 $kernel;$bloader 0x49000000 root.img.gz;bootm 0x48000000"
@@ -130,7 +132,7 @@
 /*-----------------------------------------------------------------------
  * Miscellaneous configurable options
  */
-#define CONFIG_SYS_PROMPT				"s5p4418# "     										/* Monitor Command Prompt   */
+#define CONFIG_SYS_PROMPT				"NanoPi2# "     										/* Monitor Command Prompt   */
 #define CONFIG_SYS_LONGHELP				       												/* undef to save memory	   */
 #define CONFIG_SYS_CBSIZE		   		1024		   											/* Console I/O Buffer Size  */
 #define CONFIG_SYS_PBSIZE		   		(CONFIG_SYS_CBSIZE+sizeof(CONFIG_SYS_PROMPT)+16) 	/* Print Buffer Size */
@@ -618,7 +620,7 @@
 
 	/* display logo */
 	#define CONFIG_LOGO_NEXELL				/* Draw loaded bmp file to FB or fill FB */
-//	#define CONFIG_CMD_LOGO_LOAD
+// 	#define CONFIG_CMD_LOGO_LOAD	"$bloader 0x47000000 logo.bmp; drawbmp 0x47000000"
 
 	/* Logo command: board.c */
 	#if defined(CONFIG_LOGO_DEVICE_NAND)
